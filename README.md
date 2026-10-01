@@ -1,3 +1,7 @@
+# sqzer-rav1d
+
+> **Note**: This is a fork of [rav1d](https://github.com/memorysafety/rav1d), published as `sqzer-rav1d` for [`sqzer`](https://github.com/sqzer-dev/sqzer). It is upstream `main` at `d3d1cd6`, which has the safe Rust API of upstream PR 1439 that no release carries yet, plus one change: it builds for `wasm32-unknown-unknown`. The library is still named `rav1d`. The whole diff is the package metadata, `src/wasm32_libc.rs` and its hook in `src/lib.rs`. The fork is archived once an upstream release has both. Everything below is upstream's README.
+
 # rav1d
 
 **rav1d** is an AV1 cross-platform decoder, open-source, and focused on speed

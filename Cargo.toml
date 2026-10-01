@@ -3,17 +3,19 @@ members = [".", "tools"]
 default-members = [".", "tools"]
 
 [package]
-name = "rav1d"
+name = "sqzer-rav1d"
 authors = ["Rav1d Developers", "Prossimo"]
-version = "1.1.0"
+version = "0.1.0"
 edition = "2021"
 rust-version = "1.79"
-description = "Rust port of the dav1d AV1 decoder"
+description = "rav1d, the Rust port of the dav1d AV1 decoder, at upstream main d3d1cd6 with its Rust API, plus what it takes to build for wasm32-unknown-unknown"
 license = "BSD-2-Clause"
-repository = "https://github.com/memorysafety/rav1d"
+repository = "https://github.com/sqzer-dev/rav1d"
 exclude = ["*.c", "*.h", "*.in", "meson*", "tests/", "doc/", "package/"]
 
 [lib]
+# The fork changes the package name only; code keeps writing `rav1d::`.
+name = "rav1d"
 crate-type = ["staticlib", "rlib"]
 
 [dependencies]
@@ -22,7 +24,6 @@ atomig = { version = "0.4.0", features = ["derive"] }
 av-data = "0.4.2"
 bitflags = "2.4.0"
 cfg-if = "1.0.0"
-libc = "0.2"
 parking_lot = "0.12.2"
 paste = "1.0.14"
 raw-cpuid = "11.0.1"
@@ -30,6 +31,10 @@ static_assertions = "1.1.0"
 strum = { version = "0.27", features = ["derive"] }
 to_method = "1.1.0"
 zerocopy = { version = "0.7.32", features = ["derive"] }
+
+# `wasm32-unknown-unknown` has no libc; `src/wasm32_libc.rs` stands in there.
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+libc = "0.2"
 
 [build-dependencies]
 cc = "1.0.79"

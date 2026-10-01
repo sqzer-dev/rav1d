@@ -243,34 +243,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "74765f6d916ee2faa39bc8e68e4f3ed8949b48cccdac59983d287a7cb71ce9c5"
 
 [[package]]
-name = "rav1d"
-version = "1.1.0"
-dependencies = [
- "assert_matches",
- "atomig",
- "av-data",
- "bitflags",
- "cc",
- "cfg-if",
- "libc",
- "nasm-rs",
- "parking_lot",
- "paste",
- "raw-cpuid",
- "static_assertions",
- "strum",
- "to_method",
- "zerocopy",
-]
-
-[[package]]
 name = "rav1d-cli"
 version = "1.1.0"
 dependencies = [
  "cc",
  "cfg-if",
  "libc",
- "rav1d",
+ "sqzer-rav1d",
  "windows-sys",
 ]
 
@@ -315,6 +294,27 @@ name = "smallvec"
 version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8917285742e9f3e1683f0a9c4e6b57960b7314d0b08d30d1ecd426713ee2eee9"
+
+[[package]]
+name = "sqzer-rav1d"
+version = "0.1.0"
+dependencies = [
+ "assert_matches",
+ "atomig",
+ "av-data",
+ "bitflags",
+ "cc",
+ "cfg-if",
+ "libc",
+ "nasm-rs",
+ "parking_lot",
+ "paste",
+ "raw-cpuid",
+ "static_assertions",
+ "strum",
+ "to_method",
+ "zerocopy",
+]
 
 [[package]]
 name = "static_assertions"

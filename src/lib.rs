@@ -68,6 +68,18 @@
 #[cfg(not(any(feature = "bitdepth_8", feature = "bitdepth_16")))]
 compile_error!("No bitdepths enabled. Enable one or more of the following features: `bitdepth_8`, `bitdepth_16`");
 
+// sqzer fork: `wasm32-unknown-unknown` has no libc, and the `libc` crate lacks
+// there the few names this crate uses. The crate aliases itself as `libc` on
+// that target, so every `libc::` path resolves to the items of
+// `wasm32_libc`, re-exported at the root. Other targets use the real `libc`.
+#[cfg(target_arch = "wasm32")]
+extern crate self as libc;
+#[cfg(target_arch = "wasm32")]
+mod wasm32_libc;
+#[cfg(target_arch = "wasm32")]
+#[allow(unused_imports)]
+pub(crate) use wasm32_libc::*;
+
 pub mod include {
     pub mod common {
         pub(crate) mod attributes;
